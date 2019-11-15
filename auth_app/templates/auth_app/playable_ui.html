@@ -1,0 +1,303 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="initial-scale=0.7" />
+  <title>
+    XOdia '19
+  </title>
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'assets/img/xodialogo2.png'%}" />
+  <link href="{% static './register_files/font-awesome.min.css' %}" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <!--     Fonts and icons     -->
+  <!-- CSS Files -->
+
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/paper-kit.css' %}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
+  <style type="text/css">
+    canvas {
+      border: 1px solid black;
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+
+      margin: 0;
+      background: url("{% static 'assets/uiStatic/UI_bg.jpg' %}");
+      overflow-x: hidden;
+      overflow-y: visible;
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .desktop {
+        margin-top: 0px;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .phone {
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-darker " style="background-color: black;">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="{% url 'user_login' %}#">
+          <img src="{% static 'xodia1.png' %}" width="150" height="30" />
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+          {% if not au %}
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Login" data-placement="bottom" href="{% url 'user_login' %}">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Login" data-placement="bottom" href="{% url 'user_login' %}#login">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="About" data-placement="bottom" href="{% url 'user_login' %}#About">
+              About Game
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Rules" data-placement="bottom" href="{% url 'user_login' %}#Rules">
+              Rules
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom" href="{% url 'leader' %}">
+              Leaderboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom"
+              href="{% url 'user_login' %}#Contact">
+              Contact
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Register" data-placement="bottom" href="{% url 'user_register' %}">
+              Register
+            </a>
+          </li>
+          {% endif %} {% if au %}
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="About" data-placement="bottom" href="{% url 'login_success' %}">
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="About" data-placement="bottom"
+              href="{% url 'login_success' %}#About">
+              About Game
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Rules" data-placement="bottom"
+              href="{% url 'login_success' %}#Rules">
+              Rules
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom"
+              href="{% url 'login_success' %}#Contact">
+              Contact
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom" href="{% url 'leader' %}">
+              Leaderboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom" href="{% url 'grid' %}">
+              Submit Bot
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom" href="{% url 'user_logout' %}">
+              Sign Out
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <img src="{% static 'assets/uiStatic/t1.svg' %}" id="imgp1" style="display:none" />
+  <img src="{% static 'assets/uiStatic/t12.svg' %}" id="imgp2" style="display:none" />
+  <div class="container-fluid" style="margin:0px;padding:0px;background-color: rgba(0, 0, 0, 0.8);">
+    <div class="row d-flex align-items-center">
+      <div class="col-lg-6 col-sm-12 col-md-12">
+        <canvas onclick="showcoords(event)"></canvas>
+      </div>
+      <div class="col-lg-5 col-sm-12 col-md-12 mb-5 desktop ml-3">
+        <div class="container phone">
+          <div class="row" style="margin-top:120px;">
+            <div class="col-lg-12">
+              <p class="text-white">On Windows, please set zoom to 80% and reload.</p>
+              <input class="col-10" id="stringip" type="text"
+                style="width:20rem;height:30px;color: black;border-radius:10px;margin:5px;padding-left:20px"
+                placeholder="String Input..." />
+              <button style="font-size:0.7rem;" class="btn button-primary col-2" id="stringbtn">
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="row" style="margin-top:2rem;padding-left:0.5rem">
+            <div class="col-lg-4">
+              <button id="undo" class="btn button-primary">
+                Undo Move
+              </button>
+            </div>
+            <div>
+              <button id="restart" onclick="history.go(0)" class="btn button-primary">
+                Restart
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10"
+              style="height:10rem;border:solid 2px #fff;color:white;border-radius:20px;margin-top:50px;overflow-y:auto">
+              <p style="font-size:1.5rem;margin-bottom:0px;">Status</p>
+
+              <p id="status" style="font-size:1.2rem;"></p>
+            </div>
+          </div>
+
+          <div class="row" style="">
+            <div class="col-10"
+              style="height:20rem;border:solid 2px #fff;color:white;border-radius:10px;margin-top:20px;overflow-y:scroll;">
+              <p style="font-size:1.7rem;margin-bottom:0px;">Rules</p>
+              <br />
+
+              <p style="font-size:1.3rem;">
+                Player 1: Tyragon (Blue)<br />
+                Player 2: Abagon (Red)<br /><br />
+                String Notation: The alphabet represents the row and the
+                number represents the diagonal. For example, C4 represents the
+                marble along diagonal 4 in the row C. <br /><br />
+
+                1. To play the move, <br />i. Select the first dragon that you
+                want to move. <br />ii. Select the second dragon in the
+                direction in which you want both the dragons to slide.
+                <br />Note: Whenever the move is made, the initial dragon
+                pushes the final dragon in the direction specified. For
+                example, select the marble at C4 first, then select the marble
+                at C5. Thus, the dragons slide one step to the right. The
+                dragon at C4 will thus move to C5 and the dragon at C5 will
+                move to C6. <br /><br />2. Exactly two dragons from the same
+                team, can move at a time. <br /><br />3. The two dragons may
+                move either horizontally or diagonally: <br />i. The two
+                dragons selected together, C4 and C5, can move in a pair
+                horizontally, in a way that either C4 is at C3 or C5 is at
+                C6.<br />
+                ii. The two dragons selected together, B4 and C4, can move in
+                a pair diagonally, in a way that B4 is at C4 and C4 is at
+                D4.<br /><br />
+                4. The dragon is eliminated from the board when two of the
+                opponent’s dragons push it off the edge. <br />Note:
+                Elimination doesn't work on the 6 vertices when the dragon is
+                pushed towards the vertices. <br /><br />5. The moves may be
+                considered invalid if:<br />
+                i. The pair of dragons may try to move more than one of the
+                opponent’s dragon.<br />
+                ii. The pair of dragons may push one of their own kind.<br />
+                iii. The pair of dragons may push the opponent’s dragon off
+                the vertex of the board. <br /><br />6. The battle is won when
+                the enemy has lost four of its dragons.<br /><br />
+
+                <strong>For a more comprehensive description of the game, please
+                  refer to the
+                  <a href="{% static 'XODIA.pdf' %}">documentation</a>.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static 'assets/uiStatic/finalUI.js' %}"></script>
+  <!--   Core JS Files   -->
+  <script src="{% static 'assets/js/core/jquery.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="{% static 'assets/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+  <script src="{% static 'assets/js/plugins/moment.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'assets/js/paper-kit.js' %}" type="text/javascript"></script>
+  <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script>
+    $(document).ready(function () {
+      if ($("#datetimepicker").length != 0) {
+        $("#datetimepicker").datetimepicker({
+          icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: "fa fa-chevron-left",
+            next: "fa fa-chevron-right",
+            today: "fa fa-screenshot",
+            clear: "fa fa-trash",
+            close: "fa fa-remove"
+          }
+        });
+      }
+
+      function scrollToDownload() {
+        if ($(".section-download").length != 0) {
+          $("html, body").animate(
+            {
+              scrollTop: $(".section-download").offset().top
+            },
+            1000
+          );
+        }
+      }
+    });
+  </script>
+  <!--script>
+    window.location.reload(true);
+  </script-->
+</body>
+
+</html>

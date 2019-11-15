@@ -1,0 +1,435 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0067)index.html# -->
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/xodialogo2.png' %}">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>
+    XOdia '19
+  </title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+  <!--     Fonts and icons     -->
+  <!-- CSS Files -->
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/paper-kit.css' %}" rel="stylesheet">
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet">
+<style>
+  .body {
+  }
+  .card-link {
+  color: #696969;
+}
+  .description-black{
+    color: black;
+  }
+  .description-white{
+    color: white;
+  }
+  .bg-darker {
+  background-color: black ;
+}
+.bg-dimgrey{
+  background-color:rgb(105,110,102);
+}
+.parallax {
+  overflow-x: hidden; 
+  background-image: url({% static './assets/img/dragon.jpg' %});
+  /* Create the parallax scrolling effect */
+  min-height:100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.playButton{
+    width:60vw;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius:5px;
+    font-size: 13px;
+    font-family: montserrat;
+    background-color:rgba(0,0,0,0.9);
+    border-width:0px;
+}
+
+@media only screen and (min-width: 600px) {
+
+.playButton{
+    width:30vw;
+    padding-top:20px;
+    padding-bottom:20px;
+    border-radius:10px;
+    font-size: 30px;
+    font-family: montserrat;
+    background-color:rgba(0,0,0,0.9);
+    border-width:0px;
+ }
+}
+</style>
+</head>
+
+<body class="index-page sidebar-collapse parallax" style="">
+  <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg fixed-top bg-darker navbar-transparent" color-on-scroll="110">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="{% url 'user_login' %}#">
+		<img src="{% static 'xodia1.png' %}" width="150" height="30">
+		</a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+
+	  <li class="nav-item">
+      <a class="nav-link" rel="tooltip" title="Login" data-placement="bottom" href="#login" >
+        Login
+      </a>
+    </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="About" data-placement="bottom" href="{% url 'user_login' %}#About" >
+              About Game
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Rules" data-placement="bottom" href="{% url 'user_login' %}#Rules">
+              Rules
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Sign-up/Sign-in" data-placement="bottom" href="{% url 'playable_ui' %}">
+              Playable UI
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Sign-up/Sign-in" data-placement="bottom" href="{% url 'leader' %}">
+              Leaderboard
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Contact" data-placement="bottom" href="{% url 'user_login' %}#Contact" >
+              Contact
+            </a>
+          </li>
+	  <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Register" data-placement="bottom" href="{% url 'user_register' %}" >
+              Register
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+  <div class="page-header section-dark" style="background-color:rgba(0,0,0,0.6)">
+   <div class="filter"></div>
+    <div class="content-center">
+      <div class="row d-flex justify-content-center mb-5 pb-5">
+          <img src="{% static 'frostfire1.png' %}" style="width:70%;height: auto">
+      </div>
+        <div class="row d-flex justify-content-center">
+            <a href="{% url 'playable_ui' %}#"><button type="button" class="btn playButton">Play</button></a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="main">
+
+<!-- start code for Login section--->
+
+<div id="login" class=" section section-dark" >
+    <form method="POST">
+    {% csrf_token %}
+      <div class="container">
+		<div class="row">
+			<div class="col-sm mr-auto ml-auto text-center">
+            <div class="row justify-content-center mb-3 mt-3">
+          <div class="col-sm" style="max-width:30rem; width:75%;">
+            <div class="container " style="background-color: rgba(0,0,0,0.4);border-radius: 10px;padding-left: 30px;padding-right: 30px;padding-top: 0px; ">
+
+              <div class="text-center"><br><br>
+                <div class="text-center text-muted mb-3">
+                    <h3 class="title description-white">Sign In</h3>
+                    <div class="heading-underline" style="width: 35%;height: .1rem;background-color: #FFFFFF;margin: 0.2rem auto 2rem;margin-top: 0px;padding-top: 0px;"></div>
+                  </div>
+                <form>
+                  <div class="form-group mb-4" style="padding-top: 30px;">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><svg class="svg-inline--fa fa-user fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg><!-- <i class="fa fa-user" aria-hidden="true"></i> --></span>
+                      </div>
+                      <input class="form-control" placeholder="User Name" type="text" name="username">
+                    </div>
+                  </div>
+                  <div class="form-group" style="padding-bottom: 20px;">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                       <span class="input-group-text"><svg class="svg-inline--fa fa-lock fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg><!-- <i class="fa fa-lock"></i> --></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" type="password" name="password">
+                    </div>
+                  </div>
+                  <p style="color:white;">{{ error }}</p>
+                  <div class="text-center"><br>
+                    <button type="submit" class="btn bg-dimgrey">Sign in</button>
+                  </div><br><br>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+           </div>
+        </div>
+          </div>
+
+          </div>
+      </form>
+        </div>
+      </div>
+<!-------end Sign in---->
+
+      <!-- start code for writing the about game part--->
+      <div id="About" class=" section "style="background-color: rgba(0,0,0,.85);" >
+      <div class="container">
+    <div class="row">
+      <div class="col-sm mr-auto ml-auto text-center">
+            <h2 class="title description-white">About FrostFire</h2>
+            <div class="heading-underline" style="width: 55%;height: .2rem;background-color: #FFFFFF;margin: 1rem auto 2rem;"></div>
+      <br>
+            <p class="description-white" style="font-size:1.1rem">The Battle has begun.
+              The Gods have pitted the two elements of nature, fire and ice, against one another. With ferocious fighting skills and an ardent sense of triumph, the dragons have offered to serve as the battalions.
+              
+              Protect this world at all costs, for the wraths of the enemy mustn’t be provoked.  
+              Your dragons must be set to destroy the enemy’s battalion.  Only then will you emerge victorious.<br><br>
+              
+              Survive the battlefield.<br>
+              FROSTFIRE.
+</p>
+          </div>
+      <div class="col-sm mr-auto ml-auto text-center" style="margin-left: 10px;"><br>
+            <img src="{% static 'assets/img/xodialogo22.png' %}" alt="Rounded Image" class="img-fluid" style="width:80%">
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+<!---rules page starts--->
+<div id="Rules" class="section section-dark" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 style="color: #ffff">Rules of the Game</h2><br>
+        <div class="heading-underline" style="width: 65%;height: .2rem;background-color: #FFFFFF;margin: .5rem auto 2rem;"></div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+       <center><h3 style="color: white">Rules</h3></center> 
+       <br>
+       <ul class="ul">
+          <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+            The Code for the bots must be strictly written in
+            C/C++.
+          </li>
+          <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+            The bots will be disqualified due to any errors in
+            the code or invalid moves.
+          </li>
+          <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+            Bots will also be disqualified if they fail to
+            respond in the specified time limit.
+          </li>
+          <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+            Malicious activity or excessive resource consumption
+            will also result in disqualification.
+          </li>
+          <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+            Please refer to the documentation for the detailed
+            set of rules.
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <center><h3 style="color:white">Documentation</h3></center><br>
+        <ul class="ul">
+            <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+              The problem statement for FrostFire is provided below
+              along with a detailed documentation to understand
+              the game rules.
+            </li>
+            <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+              Templates in C/C++ are put up to illustrate
+              the basic structure of the code, in order to get
+              started
+            </li>
+            <li style="font-size: 1.1rem;color:rgba(255,255,255,0.8)">
+              May the best algorithm win!
+            </li>
+          </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        
+      </div>
+      <div class="col-lg-6">
+        
+      </div>
+    </div>
+		<br><br>
+		<div class="row text-center">
+
+		  <div class="col-sm col-md-4 mr-auto ml-auto text-center">
+        <a class="btn btn-outline-neutral btn-round btn-lg bg-dimgrey" href="{% static 'ctemplate.c' %}" target="_blank" download>C Template
+        </a>
+      </div>
+		  <div class="col-sm col-md-4 mr-auto ml-auto text-center">
+        <a class="btn btn-outline-neutral btn-round btn-lg" href="{% static 'cpptemplate.cpp' %}" target="_blank" download>C++ Template
+        </a>
+      </div>
+		  <div class="col-sm col-md-4 mr-auto ml-auto text-center">
+        <a class="btn btn-outline-neutral btn-round btn-lg" href="{% static 'XODIA.pdf' %}" target="_blank" download>Documentation
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------End code for writing the rules of the game-->
+
+<!--Start code for contacts-->
+    <div id="Contact" class="section " style="background-color: rgba(0,0,0,.85);">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-sm ml-auto mr-auto text-center">
+            <h2 class="text-light">Contact Us</h2>
+            <div class="heading-underline" style="width: 55%;height: .2rem;background-color: #FFFFFF;margin: 1rem auto 2rem;"></div>
+          </div>
+        </div>
+        <div class="narrow">
+    <div class="row text-center">
+
+
+    <div class="card col-sm-md-lg ml-auto mr-auto text-center" style="width: 18rem; background-color: rgba(0,0,0,0.8); ">
+          <div class="card-body">
+              <h5 class="card-title description-white" >Kapil Mirchandani</h5>
+              <p class="card-title description-white" >+91-9923213356</p>
+         </div>
+   </div>
+ <div class="card col-sm-md-lg ml-auto mr-auto text-center" style="width: 18rem; background-color: rgba(0,0,0,0.8) ">
+            <div class="card-body">
+              <h5 class="card-title description-white"><b>Kushal Chordiya</b></h5>
+              <p class="card-title description-white">+91-9022149921</p>
+            </div>
+   </div>
+  </div>
+  </div>
+
+
+    </div>
+  </div>
+<!--End code for contacts-->
+
+
+
+
+
+<!--footer--->
+<footer class="footer  bg-darker ">
+      <div class="container">
+        <div class="row text-center">
+
+              <div class="col-md-4 mr-auto ml-auto ">
+              <a href="{% url 'user_login' %}" ><img src="{% static 'assets/img/ieeelogo.png' %}" style="height: 2.5rem; width: 8rem; margin:2rem 0rem 2rem 0rem ;">
+              </a>
+              </div>
+              <div class="col-md-4 mr-auto ml-auto " style="margin:1.9rem 1rem 1rem 1rem;" >
+                <a href="https://www.facebook.com/xodiagaming" target="_blank">
+                  <i class="fab fa-facebook-square fa-3x" style="margin:0rem 1rem 1rem 1rem; color: #ffffff;"></i>
+                </a>
+
+             <!--- <div class="col-sm-md mr-auto" style="margin:1.9rem;">--->
+                <a href="https://www.twitter.com/pisbXOdia" target="_blank"><i class="fab fa-twitter-square fa-3x"  style="margin:0rem 1rem 1rem 1rem; color: #ffffff;" ></i></a>
+
+             <!--- <div class="col-sm-md mr-auto" style="margin:1.9rem;">---->
+                <a href="https://www.instagram.com/pisbxodia" target="_blank"><i class="fab fa-instagram fa-3x"  style="margin:0rem 1rem 1rem 1rem;color: #ffffff;"></i></a>
+              </div>
+              <div class="col-md-4 mr-auto ml-auto ">
+              <img src="{% static 'pisbwhite.png' %}" style="height: 3rem; width:9rem; margin:1.9rem;" >
+              </div>
+
+          </div>
+        </div>
+  </footer>
+<!--footer end--->
+
+    <!--   Core JS Files   -->
+    <script src="{% static 'assets/js/core/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static 'assets/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="{% static 'assets/js/plugins/moment.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+    <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{% static 'assets/js/paper-kit.js' %}" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+      <script>
+      $(document).ready(function() {
+
+        if ($("#datetimepicker").length != 0) {
+          $('#datetimepicker').datetimepicker({
+            icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+            }
+          });
+        }
+
+        function scrollToDownload() {
+
+          if ($('.section-download').length != 0) {
+            $("html, body").animate({
+              scrollTop: $('.section-download').offset().top
+            }, 1000);
+          }
+        }
+      });
+    </script>
+
+
+
+
+
+</body></html>
